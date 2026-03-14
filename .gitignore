@@ -1,0 +1,5 @@
+node_modules/
+hero-previews/
+test-results/
+playwright-report/
+.DS_Store
