@@ -327,7 +327,8 @@
     .log-title-btn:hover {
       color: #2563eb;
     }
-    .post-body { display: none; }
+    .post-body { display: none; margin-top: 1rem; }
+    .log-entry.open .post-body { display: block; }
 
     @media (max-width: 600px) {
       .log-entry {
@@ -339,79 +340,22 @@
       }
     }
 
-    /* ─── Post modal ──────────────────────────────── */
-    #post-modal {
-      position: fixed;
-      inset: 0;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 1.5rem;
-    }
-    #post-modal[hidden] { display: none; }
-    .modal-backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.35);
-    }
-    .modal-box {
-      position: relative;
-      background: #fff;
-      border-radius: 10px;
-      border: 1px solid var(--color-border);
-      max-width: 640px;
-      width: 100%;
-      max-height: 85vh;
-      overflow-y: auto;
-      padding: 2rem 2.5rem;
-      box-shadow: 0 8px 40px rgba(0,0,0,0.12);
-    }
-    .modal-close {
-      all: unset;
-      position: absolute;
-      top: 1rem;
-      right: 1.25rem;
-      font-size: 1.4rem;
-      color: var(--color-muted);
-      cursor: pointer;
-      line-height: 1;
-    }
-    .modal-close:hover { color: var(--color-text); }
-    .modal-meta {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-wrap: wrap;
-      margin-bottom: 0.75rem;
-    }
-    .modal-date {
-      font-family: var(--font-mono);
-      font-size: 0.8rem;
-      color: var(--color-muted);
-    }
-    .modal-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 2px solid #2563eb;
-    }
-    .modal-body {
+    /* ─── Inline post body ────────────────────────── */
+    .post-body {
       font-size: 0.975rem;
       line-height: 1.75;
-      color: #222;
+      color: var(--color-text);
     }
-    .modal-body p + p { margin-top: 1rem; }
-    .modal-body code {
+    .post-body p + p { margin-top: 1rem; }
+    .post-body h3 { font-size: 0.95rem; font-weight: 700; margin: 1.75rem 0 0.5rem; color: var(--color-text); }
+    .post-body code {
       font-family: var(--font-mono);
       font-size: 0.875em;
-      background: var(--color-surface);
+      background: var(--color-surface-2);
       padding: 0.15em 0.4em;
       border-radius: 4px;
     }
-    .modal-body pre {
+    .post-body pre {
       background: var(--color-surface);
       border: 1px solid var(--color-border);
       border-radius: 6px;
@@ -419,14 +363,7 @@
       overflow-x: auto;
       margin: 1rem 0;
     }
-    .modal-body pre code {
-      background: none;
-      padding: 0;
-      font-size: 0.85rem;
-    }
-    @media (max-width: 600px) {
-      .modal-box { padding: 1.5rem 1.25rem; }
-    }
+    .post-body pre code { background: none; padding: 0; font-size: 0.85rem; }
   </style>
 </head>
 <body>
@@ -441,7 +378,7 @@
         <p class="hero-tagline">Building tools for thinking, tracking, and learning.</p>
         <nav class="hero-links">
           <a href="https://github.com/rcorson2018-star">GitHub</a>
-          <a href="mailto:roark@example.com">Email</a>
+          <a href="mailto:rcorson2018@gmail.com">Email</a>
         </nav>
       </div>
 
@@ -452,7 +389,7 @@
         <p class="term-tagline">Building tools for thinking, tracking, and learning.</p>
         <nav class="term-links">
           <a href="https://github.com/rcorson2018-star">github.com/rcorson2018-star</a>
-          <a href="mailto:roark@example.com">roark@example.com</a>
+          <a href="mailto:rcorson2018@gmail.com">rcorson2018@gmail.com</a>
         </nav>
       </div>
 
@@ -466,7 +403,7 @@
           <p class="split-tagline">Building tools for thinking, tracking, and learning.</p>
           <nav class="split-links">
             <a href="https://github.com/rcorson2018-star">GitHub</a>
-            <a href="mailto:roark@example.com">Email</a>
+            <a href="mailto:rcorson2018@gmail.com">Email</a>
           </nav>
         </div>
       </div>
@@ -475,10 +412,10 @@
       <div id="projects">
         <h2 class="section-title">Projects</h2>
         <div class="projects-grid">
-          <a class="project-card" href="https://rcorson2018-star.github.io/todo-app">
+          <a class="project-card" href="https://rocolabs.github.io/Todo">
             <span class="project-name">Todo App</span>
             <span class="project-desc">A zero-build personal dashboard with daily tasks, goals, health tracking, and configurable widgets.</span>
-            <span class="project-link-hint">rcorson2018-star.github.io/todo-app ↗</span>
+            <span class="project-link-hint">rocolabs.github.io/Todo ↗</span>
           </a>
         </div>
       </div>
@@ -492,50 +429,50 @@
       <article class="log-entry">
         <time class="log-date">2026-03-14</time>
         <div class="log-content">
-          <button class="log-title-btn">Shipped quadrant visibility toggles</button>
+          <button class="log-title-btn">Dev Log — Entry 01</button>
           <div class="log-tags">
             <span class="tag">todo-app</span>
-            <span class="tag">ux</span>
-            <span class="tag">bugfix</span>
-          </div>
-          <div class="post-body">
-            <p>The dashboard now lets you hide any of the four quadrants you don't need. A small eye icon in each quadrant header toggles visibility, and the grid reflows so the remaining quadrants fill the space cleanly.</p>
-            <p>This started as a bug report — the health tracker was getting in the way for people who only wanted task management. Turned out the fix was simpler than expected: one <code>hidden</code> attribute on the quadrant wrapper and a <code>grid-template-columns</code> recalculation in CSS.</p>
-            <p>State is persisted in <code>localStorage</code> so your layout survives a page refresh.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="log-entry">
-        <time class="log-date">2026-02-28</time>
-        <div class="log-content">
-          <button class="log-title-btn">Mobile header overhaul</button>
-          <div class="log-tags">
-            <span class="tag">todo-app</span>
+            <span class="tag">claude-code</span>
+            <span class="tag">vscode</span>
             <span class="tag">mobile</span>
-            <span class="tag">css</span>
           </div>
           <div class="post-body">
-            <p>The header on small screens was cramped — the nav labels were truncating and the dark mode toggle was falling off the edge. This pass shortened the labels, made the header always visible (no more hiding on scroll), and tightened the responsive breakpoint logic.</p>
-            <p>The main change was switching from a fixed pixel breakpoint to <code>clamp()</code> for font sizes and using <code>gap</code> instead of fixed margins between header items. Fewer magic numbers, more predictable behavior across device widths.</p>
-          </div>
-        </div>
-      </article>
+            <p>Last Sunday, March 7, I sat down with Claude Code in the Terminal and built a todo app from scratch.</p>
+            <p>No IDE, no prior setup. I described what I wanted — daily tasks, long-term goals, a workout tracker, modular quadrants for habits and spending — and spent the better part of an afternoon going back and forth until it worked.</p>
+            <p>By the end, it was live on GitHub Pages and I was using it every day.</p>
+            <p>That's what kicked this off. Today I wanted to build on it: fix some things that had been bugging me, figure out how to properly set up VS Code, build a place to document this work, and get the app in front of real users. Four things.</p>
+            <p>I also did something I hadn't done before — before writing a line of code, I used Claude's Cowork tool to plan out what each task actually required. It helped me figure out the right prompts to take into Claude Code so I wasn't figuring things out from scratch each time.</p>
 
-      <article class="log-entry">
-        <time class="log-date">2026-02-10</time>
-        <div class="log-content">
-          <button class="log-title-btn">Added Playwright test suite</button>
-          <div class="log-tags">
-            <span class="tag">todo-app</span>
-            <span class="tag">testing</span>
-            <span class="tag">playwright</span>
-          </div>
-          <div class="post-body">
-            <p>Set up Playwright for the todo app with both desktop and mobile test projects. The suite covers the core flows: onboarding, adding and completing tasks, dark mode toggle, and the workout logger modal.</p>
-            <p>Since the app is zero-build and lives in a single HTML file, the test setup is minimal — <code>python3 -m http.server</code> as the web server, no compile step. Playwright spins it up automatically before each run.</p>
-            <pre><code>npx playwright test --project=mobile</code></pre>
-            <p>Screenshots are saved to <code>test-results/</code> on failure, which has already caught two layout regressions that weren't visible on desktop.</p>
+            <h3>Building the App (March 7, Backstory)</h3>
+            <p>The app isn't just a checklist. It tracks daily and long-term goals as separate lists, has a workout tracker that activates when you log an exercise-related task, and is organized in modular quadrants — you can toggle on a language learning tracker, a habit tracker, or a spending log depending on what you're trying to stay on top of.</p>
+            <p>Everything is stored locally, so your workout history and spending data persist across sessions.</p>
+            <p>One thing I'm particularly glad I did: before shipping, I asked Claude to propose a test suite, we aligned on what good coverage looked like, and then I used Playwright to run automated tests through the onboarding flow.</p>
+            <p>Playwright essentially plays the role of a user and walks through every step — filling in fields, clicking through screens, confirming the right things appear. It's a tool engineers use to test web apps, and being able to apply it here let me ship with more confidence. That's the kind of thing I want to be able to do more of.</p>
+
+            <h3>This Week — Fixing What Wasn't Working</h3>
+            <p>When I started using the app daily, two problems became obvious.</p>
+            <p>First: the mobile UI wasn't sharp. Text a little small, tap targets cramped, spacing that worked on desktop felt off on a phone. I had downloaded VS Code specifically so I could get into the HTML and CSS myself for this kind of thing — rather than prompting Claude for every small tweak and burning through my usage on edits I could just make directly.</p>
+            <p>I read through the stylesheet, understood what each piece was doing, and tightened it up. There's something clarifying about editing your own code by hand; it's a different kind of understanding than reading a summary of what Claude changed.</p>
+            <p>To actually diagnose what was off, I used Playwright and Chromium to spin up a test instance of Chrome configured as an iPhone 15 — essentially a simulated mobile browser running locally.</p>
+            <p>From there I had Claude take screenshots of the app at that viewport and we could see the problem clearly: the header banner had text overflowing out of its container, wrapping awkwardly and looking unprofessional. Not something you'd catch on desktop.</p>
+            <p>We fixed it directly from the screenshots, re-ran, confirmed it looked clean. That loop — simulate, screenshot, fix, verify — is the right way to work on mobile UI, and it's the same underlying tool I used to test onboarding on March 7. Playwright keeps coming up.</p>
+            <p>The second problem was a missing feature. I kept going back to iPhone Notes to plan my weekends — one note, three sections (Friday, Saturday, Sunday), tasks and events I'd check off as the weekend moved.</p>
+            <p>I built a todo app and still wasn't using it for this. That's not a styling issue; it's a product gap. So I'm adding a Weekend view: a persistent three-section checklist that lives outside the daily task flow. I drafted the Claude Code prompt for it today and will build it out this week.</p>
+
+            <h3>VS Code + Claude Code</h3>
+            <p>I had Claude Code running in the Terminal already, so today was about upgrading the setup. The VS Code extension puts Claude in a panel docked to your IDE, which is meaningfully better than switching back and forth to a terminal window.</p>
+            <p>Two things I'll use consistently going forward.</p>
+            <p>Plan Mode: before Claude touches any code, it writes out what it intends to do in plain language. You can read it, push back, annotate it. That's the right model for the kind of work I'm doing — I want to make the architectural calls, not just approve outputs.</p>
+            <p>And <code>CLAUDE.md</code>: a file at the root of each project that Claude reads every session. Coding conventions, how to run tests, what to check on mobile. You write it once and stop repeating yourself.</p>
+            <p>The division I've landed on: Cowork for planning and drafting prompts, Claude Code for building, VS Code for the edits I can and should make myself.</p>
+
+            <h3>Getting the App Out There</h3>
+            <p>The app has been private long enough. Before sharing it, I wanted the URL to not look like a side project someone threw together.</p>
+            <p>The original link — rcorson2018-star.github.io/todo-app — has my old GitHub username in it and a generic slug. To clean it up, I created a GitHub organization called ROCOLabs, transferred the repo there, and updated the local remote to point to the new location.</p>
+            <p>The app now lives under the ROCOLabs org, with a URL that actually looks like something. GitHub handles the redirect from the old link automatically.</p>
+            <p>The message I'm sending is deliberately low-key — "I built this, it might have rough edges, tell me what you find" rather than a product announcement. Early users with zero stakes are the best feedback you can get.</p>
+
+            <p>The through-line in all of this: I'm not an engineer, but I can engage with a codebase, make decisions about what to build, ship independently, and iterate based on what I find. That's what this log is for — to show that process as it actually happens.</p>
           </div>
         </div>
       </article>
@@ -544,56 +481,16 @@
 
   </div><!-- /.container -->
 
-  <!-- ─── Post modal ──────────────────────────────── -->
-  <div id="post-modal" hidden>
-    <div class="modal-backdrop"></div>
-    <div class="modal-box">
-      <button class="modal-close" aria-label="Close">×</button>
-      <div class="modal-meta">
-        <time class="modal-date"></time>
-        <div class="modal-tags"></div>
-      </div>
-      <h2 class="modal-title"></h2>
-      <div class="modal-body"></div>
-    </div>
-  </div>
-
-  <script>
+<script>
     (function () {
-      // Hero variant
-      const param = new URLSearchParams(window.location.search).get('hero');
-      const v = ['1', '2', '3'].includes(param) ? param : '1';
-      document.getElementById('hero-' + v).classList.add('active');
+      // Always use hero 1
+      document.getElementById('hero-1').classList.add('active');
 
-      // Post modal
-      const modal = document.getElementById('post-modal');
-      const modalDate = modal.querySelector('.modal-date');
-      const modalTags = modal.querySelector('.modal-tags');
-      const modalTitle = modal.querySelector('.modal-title');
-      const modalBody = modal.querySelector('.modal-body');
-
-      function openModal(entry) {
-        modalDate.textContent = entry.querySelector('time').textContent;
-        modalTitle.textContent = entry.querySelector('.log-title-btn').textContent;
-        modalTags.innerHTML = entry.querySelector('.log-tags').innerHTML;
-        modalBody.innerHTML = entry.querySelector('.post-body').innerHTML;
-        modal.hidden = false;
-        document.body.style.overflow = 'hidden';
-      }
-
-      function closeModal() {
-        modal.hidden = true;
-        document.body.style.overflow = '';
-      }
-
+      // Inline expand/collapse log entries
       document.querySelectorAll('.log-entry').forEach(function (entry) {
-        entry.addEventListener('click', function () { openModal(entry); });
-      });
-
-      modal.querySelector('.modal-close').addEventListener('click', closeModal);
-      modal.querySelector('.modal-backdrop').addEventListener('click', closeModal);
-      document.addEventListener('keydown', function (e) {
-        if (e.key === 'Escape') closeModal();
+        entry.addEventListener('click', function () {
+          entry.classList.toggle('open');
+        });
       });
     })();
   </script>
