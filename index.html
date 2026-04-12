@@ -427,6 +427,31 @@
       <h2 class="section-title">Dev Log</h2>
 
       <article class="log-entry">
+        <time class="log-date">2026-04-09</time>
+        <div class="log-content">
+          <button class="log-title-btn">Claude in Excel, Part 2</button>
+          <div class="log-tags">
+            <span class="tag">claude</span>
+            <span class="tag">excel</span>
+            <span class="tag">consulting</span>
+          </div>
+          <div class="post-body">
+            <p>I wanted to push Claude in Excel harder than the data integrity check from my last post. That task was clear-cut: two files, verify they match across a set of cuts. This time I gave it something that required actually understanding a data model before touching anything.</p>
+            <p>The workbook had three tabs. One mapped every manufacturing plant to a Strategic Business Unit (the master hierarchy). Another had in-stock percentage at the SBU level, the rollup view. A third had the source data at the SKU level, tagged with plant and SBU identifiers. The task was to build a summary table: each SBU with its in-stock percentage, and the plants nested underneath with their individual rates. The kind of output you build when you want to pressure-test a rollup and see what's pulling each number up or down.</p>
+            <p>Not a complicated thing to describe. But building it correctly means holding the whole data model in your head. Which tab feeds which, which keys link across tabs, how the hierarchy maps. One inverted formula and your numbers are quietly wrong.</p>
+            <p>I spent about two minutes on the prompt. Almost all of it was context: here's what each tab contains, here's how they relate, here's the formula I'm using for in-stock. The actual instruction was one sentence. Somewhere in describing the formula I got the numerator and denominator backwards, M over N when I meant N over M.</p>
+            <p>Claude asked one question before starting. It flagged the formula direction. Based on the column descriptions I'd given, it said the relationship implied the inverse of what I'd stated and asked me to confirm. I hadn't asked it to sanity-check anything. It just caught the inconsistency between how I described the columns and the formula I said I was using, and surfaced it before touching a cell.</p>
+            <p>I confirmed the correction. It laid out how it was going to approach the build and ran with it.</p>
+            <p>The output was basically perfect. Every SBU, every plant nested under the right SBU, in-stock rates that matched the source data. I asked it to add check cells that verified the SBU rollup numbers against the SBU tab. Everything reconciled.</p>
+            <p>The same task done manually would have taken me 15 to 30 minutes. Getting the cross-tab lookups right, verifying the outputs against the source — it's not hard work but it's slow and there's real room for error.</p>
+            <p>What stuck with me was that the clarifying question wasn't about the task. It was about the data. Claude wasn't confused about what I wanted. It understood the structure well enough to notice something didn't add up and asked about the one thing that actually mattered before proceeding. That's different from just writing formulas on command.</p>
+            <p>The thing I keep noticing: most of the prompt is context, very little of it is instruction. The checking still matters and I don't skip it, but I'm building in the verification rather than using it to catch mistakes after the fact. That's a different kind of workflow.</p>
+            <p>Still figuring out where the ceiling is.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="log-entry">
         <time class="log-date">2026-04-02</time>
         <div class="log-content">
           <button class="log-title-btn">Claude in Excel</button>
